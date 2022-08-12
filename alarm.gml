@@ -1,11 +1,24 @@
-//Esse código deve ser inserido no ALARM[0] do obj_fantasma
-
-//Particulas Fantasma
-for (var i = 0; i < irandom_range(1, 10); i++)
+#region Particulas de Fantasma
+function scr_create_par1() //Esse código deve ser inserido no CREATE do obj_particula, ou neste caso: par_particle
 {
-    var xx = ranfom_range(x - sprite_width/2, x + sprite_width/2);
+    make_color_rgb(120, 150, 150);
+    make_color_rgb(66, 105, 111);
 
-    instance_create_layer(xx, y, layer, par_particle); 
+    image_blend = choose(make_color_rgb(120, 150, 150), make_color_rgb(66, 105, 111));
+    image_xscale = random_range(.7, .9);
+    image_yscale = image_xscale;
+
+    direction(random(360));
+    speed = random_range(.2, .8);
+    image_angle = random(360);
 }
 
-alarm[0] = room_speed/30; //Repetindo esse código para a partícula não parar
+function scr_step_par1() //Esse código deve ser inserido no STEP do obj_particula
+{
+    image_alpha -= .009;
+    if (image_alpha <= 0)
+    {
+        instance_destroy();
+    }
+}
+#endregion
